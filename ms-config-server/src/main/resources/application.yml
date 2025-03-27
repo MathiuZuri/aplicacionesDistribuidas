@@ -13,7 +13,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/elvisjsAtlas1/DAD-2025-G2.git # ruta del repositorio git
+          uri: https://github.com/MathiuZuri/aplicacionesDistribuidas.git # ruta del repositorio git
           searchPaths: config-data
           default-label: main
   security:

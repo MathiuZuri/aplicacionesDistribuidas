@@ -1,6 +1,6 @@
-package com.example.mscatalogo.service;
+package com.example.ms_catalogo.service;
 
-import com.example.mscatalogo.entity.Categoria;
+import com.example.ms_catalogo.entity.Categoria;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.example.mscatalogo.entity;
+package com.example.ms_catalogo.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
