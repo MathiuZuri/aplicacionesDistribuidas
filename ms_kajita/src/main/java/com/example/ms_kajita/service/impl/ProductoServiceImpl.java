@@ -6,20 +6,21 @@ import com.example.ms_kajita.repository.ProductoRepository;
 import com.example.ms_kajita.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate; // Import RestTemplate
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ProductoServiceImpl implements ProductoService {
+
     @Autowired
     private ProductoRepository productoRepository;
 
     @Autowired
-    private RestTemplate restTemplate; // Inyecta RestTemplate
+    private RestTemplate restTemplate;
 
-    private final String categoriaServiceUrl = "http://ms-catalogo/categoria/"; // URL del microservicio de categorías
+    private final String categoriaServiceUrl = "http://ms-catalogo-service/categorias/";
 
     @Override
     public List<Producto> listar() {
@@ -38,14 +39,7 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     public Optional<Producto> listarPorId(Integer id) {
-        Optional<Producto> productoOptional = productoRepository.findById(id);
-        if (productoOptional.isPresent()) {
-            Producto producto = productoOptional.get();
-            String categoriaNombre = getCategoriaNombre(producto.getCategoriaId());
-            producto.setCategoriaNombre(categoriaNombre);
-            return Optional.of(producto);
-        }
-        return productoOptional;
+        return productoRepository.findById(id);
     }
 
     @Override
@@ -53,15 +47,26 @@ public class ProductoServiceImpl implements ProductoService {
         productoRepository.deleteById(id);
     }
 
-    private String getCategoriaNombre(Integer categoriaId) {
+    @Override
+    public Optional<Producto> obtenerProductoConNombreCategoria(Integer id) {
+        Optional<Producto> productoOptional = productoRepository.findById(id);
+        if (productoOptional.isPresent()) {
+            Producto producto = productoOptional.get();
+            String categoriaNombre = obtenerNombreCategoria(producto.getCategoriaId());
+            producto.setCategoriaNombre(categoriaNombre);
+            return Optional.of(producto);
+        }
+        return Optional.empty();
+    }
+
+    private String obtenerNombreCategoria(Integer categoriaId) {
         try {
             Categoria categoria = restTemplate.getForObject(categoriaServiceUrl + categoriaId, Categoria.class);
             if (categoria != null) {
                 return categoria.getNombre();
             }
         } catch (Exception e) {
-            // Manejar la excepción (por ejemplo, loggear el error)
-            return "Categoria no encontrada";
+            return "Categoría no encontrada";
         }
         return null;
     }

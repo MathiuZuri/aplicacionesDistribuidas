@@ -10,32 +10,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/productos") // Cambiado a /productos
+@RequestMapping("/productos")
 public class ProductoController {
 
     @Autowired
     private ProductoService productoService;
 
     @GetMapping
-    public ResponseEntity<List<Producto>> listarProductos() { // Cambiado el nombre del método
+    public ResponseEntity<List<Producto>> listarProductos() {
         return new ResponseEntity<>(productoService.listar(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Producto> obtenerProductoPorId(@PathVariable Integer id) { // Cambiado el nombre del método
-        return productoService.listarPorId(id)
+    public ResponseEntity<Producto> obtenerProductoPorId(@PathVariable Integer id) {
+        return productoService.obtenerProductoConNombreCategoria(id)
                 .map(producto -> new ResponseEntity<>(producto, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
-    public ResponseEntity<Producto> crearProducto(@RequestBody Producto producto) { // Cambiado el nombre del método
+    public ResponseEntity<Producto> crearProducto(@RequestBody Producto producto) {
         Producto productoCreado = productoService.guardar(producto);
         return new ResponseEntity<>(productoCreado, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Producto> actualizarProducto(@PathVariable Integer id, @RequestBody Producto producto) { // Cambiado el nombre del método
+    public ResponseEntity<Producto> actualizarProducto(@PathVariable Integer id, @RequestBody Producto producto) {
         if (productoService.listarPorId(id).isPresent()) {
             producto.setId(id);
             Producto productoActualizado = productoService.actualizar(producto);
@@ -46,7 +46,7 @@ public class ProductoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarProducto(@PathVariable Integer id) { // Cambiado el nombre del método
+    public ResponseEntity<Void> eliminarProducto(@PathVariable Integer id) {
         if (productoService.listarPorId(id).isPresent()) {
             productoService.eliminarPorId(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

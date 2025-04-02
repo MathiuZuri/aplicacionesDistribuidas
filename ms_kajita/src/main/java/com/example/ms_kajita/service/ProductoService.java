@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductoService {
+
     public List<Producto> listar();
 
     public Producto guardar(Producto producto);
@@ -15,4 +16,6 @@ public interface ProductoService {
     public Optional<Producto> listarPorId(Integer id);
 
     public void eliminarPorId(Integer id);
+
+    public Optional<Producto> obtenerProductoConNombreCategoria(Integer id);
 }
