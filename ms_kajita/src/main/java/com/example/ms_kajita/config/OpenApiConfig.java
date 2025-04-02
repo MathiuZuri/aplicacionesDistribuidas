@@ -1,4 +1,4 @@
-package com.example.ms_catalogo.config;
+package com.example.ms_kajita.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -13,9 +13,9 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("OPEN API MICROSERVICIO CATÁLOGO")
+                        .title("OPEN API MICROSERVICIO PRODUCTO")
                         .version("0.0.1")
-                        .description("servicios web catálogo")
+                        .description("servicios web producto")
                         .termsOfService("http://swagger.io/terms")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")));
     }

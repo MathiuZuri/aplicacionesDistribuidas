@@ -1,7 +1,7 @@
 
 spring:
   application:
-    name: ms-catalogo-service
+    name: ms-kajita-service
   profiles:
     active: development
   config:

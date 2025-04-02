@@ -1,4 +1,4 @@
-package com.example.ms_catalogo;
+package com.example.ms_kajita;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
