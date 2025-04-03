@@ -20,7 +20,7 @@ public class ProductoServiceImpl implements ProductoService {
     @Autowired
     private RestTemplate restTemplate;
 
-    private final String categoriaServiceUrl = "http://ms-catalogo-service/categorias/";
+    private final String categoriaServiceUrl = "http://ms-catalogo-service/categoria/";
 
     @Override
     public List<Producto> listar() {
