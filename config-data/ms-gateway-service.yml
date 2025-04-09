@@ -20,8 +20,7 @@ spring:
         - id: ms-catalogo-service
           uri: lb://ms-catalogo-service
           predicates:
-            - Path=/categoria/**
-            -       routes:
+            - Path=/categorias/**
         - id: ms-kajita-service
           uri: lb://ms-kajita-service
           predicates:
