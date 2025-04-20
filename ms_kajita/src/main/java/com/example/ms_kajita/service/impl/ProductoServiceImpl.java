@@ -1,15 +1,16 @@
 package com.example.ms_kajita.service.impl;
 
-import com.example.ms_kajita.entity.Categoria;
+import com.example.ms_kajita.feing.CatalogoFeign;
+import com.example.ms_kajita.dto.CategoriaDto;
 import com.example.ms_kajita.entity.Producto;
 import com.example.ms_kajita.repository.ProductoRepository;
 import com.example.ms_kajita.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductoServiceImpl implements ProductoService {
@@ -18,28 +19,45 @@ public class ProductoServiceImpl implements ProductoService {
     private ProductoRepository productoRepository;
 
     @Autowired
-    private RestTemplate restTemplate;
-
-    private final String categoriaServiceUrl = "http://ms-catalogo-service/categoria/";
+    private CatalogoFeign catalogoFeign; // Correcto: inyectaste catalogoFeign
 
     @Override
     public List<Producto> listar() {
-        return productoRepository.findAll();
+        return productoRepository.findAll().stream()
+                .map(producto -> {
+                    String categoriaNombre = obtenerNombreCategoria(producto.getCategoriaId());
+                    producto.setCategoriaNombre(categoriaNombre);
+                    return producto;
+                })
+                .collect(Collectors.toList());
     }
 
     @Override
     public Producto guardar(Producto producto) {
-        return productoRepository.save(producto);
+        Producto productoGuardado = productoRepository.save(producto);
+        String categoriaNombre = obtenerNombreCategoria(productoGuardado.getCategoriaId());
+        productoGuardado.setCategoriaNombre(categoriaNombre);
+        return productoGuardado;
     }
 
     @Override
     public Producto actualizar(Producto producto) {
-        return productoRepository.save(producto);
+        Producto productoActualizado = productoRepository.save(producto);
+        String categoriaNombre = obtenerNombreCategoria(productoActualizado.getCategoriaId());
+        productoActualizado.setCategoriaNombre(categoriaNombre);
+        return productoActualizado;
     }
 
     @Override
     public Optional<Producto> listarPorId(Integer id) {
-        return productoRepository.findById(id);
+        Optional<Producto> productoOptional = productoRepository.findById(id);
+        if (productoOptional.isPresent()) {
+            Producto producto = productoOptional.get();
+            String categoriaNombre = obtenerNombreCategoria(producto.getCategoriaId());
+            producto.setCategoriaNombre(categoriaNombre);
+            return Optional.of(producto);
+        }
+        return Optional.empty();
     }
 
     @Override
@@ -61,9 +79,9 @@ public class ProductoServiceImpl implements ProductoService {
 
     private String obtenerNombreCategoria(Integer categoriaId) {
         try {
-            Categoria categoria = restTemplate.getForObject(categoriaServiceUrl + categoriaId, Categoria.class);
-            if (categoria != null) {
-                return categoria.getNombre();
+            CategoriaDto categoriaDto = catalogoFeign.buscarCategoria(categoriaId).getBody(); // Correcto: usando catalogoFeign y obteniendo el body
+            if (categoriaDto != null) {
+                return categoriaDto.getNombre();
             }
         } catch (Exception e) {
             return "Categoría no encontrada";

@@ -1,6 +1,6 @@
-package com.example.ms_kajita.entity;
+package com.example.ms_kajita.dto;
 
-public class Categoria {
+public class CategoriaDto {
     private Integer id;
     private String nombre;
 
@@ -20,16 +20,16 @@ public class Categoria {
         this.nombre = nombre;
     }
 
-    public Categoria(Integer id, String nombre) {
+    public CategoriaDto(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
 
-    public Categoria() {}
+    public CategoriaDto() {}
 
     @Override
     public String toString() {
-        return "Categoria{" +
+        return "CategoriaDto{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 '}';
