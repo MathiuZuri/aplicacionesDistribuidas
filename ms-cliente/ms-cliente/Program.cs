@@ -10,7 +10,11 @@ using Microsoft.EntityFrameworkCore;
 using ms_cliente.data;
 using Steeltoe.Discovery.Client;
 
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddJsonFile("ms-cliente-service.json", optional: true, reloadOnChange: true);
+builder.Configuration.AddJsonFile($"ms-cliente-service.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -62,7 +66,6 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = builder.Configuration["Swagger:RoutePrefix"]; // Lee la ruta del prefijo de la configuración http://localhost:5201/swagger/index.html
     });
 }
-
 
 
 

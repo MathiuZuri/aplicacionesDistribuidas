@@ -1,5 +1,4 @@
 J:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\bin\Debug\net9.0\appsettings.Development.json
-J:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\bin\Debug\net9.0\appsettings.json
 J:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\bin\Debug\net9.0\ms-cliente.staticwebassets.endpoints.json
 J:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\bin\Debug\net9.0\ms-cliente.exe
 J:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\bin\Debug\net9.0\ms-cliente.deps.json
@@ -172,3 +171,4 @@ J:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\obj\Debug\net9.0\m
 J:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\obj\Debug\net9.0\ref\ms-cliente.dll
 J:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\bin\Debug\net9.0\Steeltoe.Discovery.Eureka.dll
 J:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\bin\Debug\net9.0\System.Reflection.MetadataLoadContext.dll
+J:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\bin\Debug\net9.0\ms-cliente-service.json
