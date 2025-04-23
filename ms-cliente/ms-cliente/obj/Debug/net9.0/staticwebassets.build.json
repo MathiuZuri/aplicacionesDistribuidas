@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "3qkyZJ2j+iHUYFY7tOWnxwF0/rJ64V9JEMJsTL3ZUbU=",
+  "Source": "ms-cliente",
+  "BasePath": "_content/ms-cliente",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
