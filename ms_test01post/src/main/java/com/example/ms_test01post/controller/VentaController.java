@@ -22,12 +22,12 @@ public class VentaController {
     }
 
     @PostMapping()
-    public ResponseEntity<Venta> save(@RequestBody Venta venta) {
+    public ResponseEntity<Object> save(@RequestBody Venta venta) {
         try {
             Venta ventaGuardada = ventaService.guardar(venta);
             return new ResponseEntity<>(ventaGuardada, HttpStatus.CREATED);
         } catch (RuntimeException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST); // Maneja errores de stock o producto no encontrado
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 

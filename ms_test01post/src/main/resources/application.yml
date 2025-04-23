@@ -1,7 +1,7 @@
 
 spring:
   application:
-    name: ms-test01post
+    name: ms-test01post-service
   profiles:
     active: development
   config:
