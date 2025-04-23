@@ -6,19 +6,43 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "ventas")
 public class Venta {
+
+    public Venta(Integer id, Integer productoId, Integer cantidad, LocalDateTime fechaVenta, String nombreProducto, Integer clienteId, String nombreCliente) {
+        this.id = id;
+        this.productoId = productoId;
+        this.cantidad = cantidad;
+        this.fechaVenta = fechaVenta;
+        this.nombreProducto = nombreProducto;
+        this.clienteId = clienteId;
+        this.nombreCliente = nombreCliente;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private LocalDateTime fechaVenta;
-
     @Column(name = "producto_id")
     private Integer productoId;
 
-    @Transient
-    private String nombreProducto; // Se llenará al obtener el nombre del producto
-
+    @Column(name = "cantidad")
     private Integer cantidad;
+
+
+    @Column(name = "fecha_venta")
+    private LocalDateTime fechaVenta;
+
+    @Transient // No se persiste en la base de datos, solo para mostrar
+    private String nombreProducto;
+
+    @Column(name = "cliente_id") // Campo para el ID del cliente (proveniente del servicio C#)
+    private Integer clienteId;
+
+    @Transient // No se persiste en la base de datos, solo para mostrar
+    private String nombreCliente;
+
+    public Venta() {
+
+    }
 
     // Getters y setters
 
@@ -30,28 +54,12 @@ public class Venta {
         this.id = id;
     }
 
-    public LocalDateTime getFechaVenta() {
-        return fechaVenta;
-    }
-
-    public void setFechaVenta(LocalDateTime fechaVenta) {
-        this.fechaVenta = fechaVenta;
-    }
-
     public Integer getProductoId() {
         return productoId;
     }
 
     public void setProductoId(Integer productoId) {
         this.productoId = productoId;
-    }
-
-    public String getNombreProducto() {
-        return nombreProducto;
-    }
-
-    public void setNombreProducto(String nombreProducto) {
-        this.nombreProducto = nombreProducto;
     }
 
     public Integer getCantidad() {
@@ -62,24 +70,47 @@ public class Venta {
         this.cantidad = cantidad;
     }
 
-    public Venta() {
+    public LocalDateTime getFechaVenta() {
+        return fechaVenta;
     }
 
-    public Venta(Integer id, LocalDateTime fechaVenta, Integer productoId, Integer cantidad) {
-        this.id = id;
+    public void setFechaVenta(LocalDateTime fechaVenta) {
         this.fechaVenta = fechaVenta;
-        this.productoId = productoId;
-        this.cantidad = cantidad;
     }
 
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
+
+    public Integer getClienteId() {
+        return clienteId;
+    }
+
+    public void setClienteId(Integer clienteId) {
+        this.clienteId = clienteId;
+    }
+
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
     @Override
     public String toString() {
         return "Venta{" +
                 "id=" + id +
-                ", fechaVenta=" + fechaVenta +
                 ", productoId=" + productoId +
-                ", nombreProducto='" + nombreProducto + '\'' +
                 ", cantidad=" + cantidad +
+                ", fechaVenta=" + fechaVenta +
+                ", nombreProducto='" + nombreProducto + '\'' +
+                ", clienteId=" + clienteId +
+                ", nombreCliente='" + nombreCliente + '\'' +
                 '}';
     }
 }

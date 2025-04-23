@@ -24,6 +24,8 @@ builder.Services.AddDiscoveryClient(builder.Configuration); // Agrega el cliente
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+
 // Configure DbContext with MySQL
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ClienteDbContext>(options =>
