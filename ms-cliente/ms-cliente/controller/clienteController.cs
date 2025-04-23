@@ -7,7 +7,7 @@ using System.Net;
 namespace ms_cliente.controller
 {
     [ApiController]
-    [Route("/clientes")]
+    [Route("clientes")]
     public class ClienteController : ControllerBase
     {
         private readonly IClienteService _clienteService;
