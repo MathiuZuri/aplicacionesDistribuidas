@@ -27,3 +27,8 @@ spring:
           uri: lb://ms-kajita-service
           predicates:
             - Path=/productos/**
+
+        - id: ms-test01post-service
+          uri: lb://ms-test01post-service
+          predicates:
+            - Path=/ventas/**

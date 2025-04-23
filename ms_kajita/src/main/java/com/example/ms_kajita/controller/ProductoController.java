@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/productos")
@@ -52,6 +53,25 @@ public class ProductoController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+
+    //opcional
+    @PutMapping("/{id}/decrementar-stock")
+    public ResponseEntity<?> decrementarStock(@PathVariable Integer id, @RequestParam Integer cantidad) {
+        Optional<Producto> productoOptional = productoService.listarPorId(id);
+        if (productoOptional.isPresent()) {
+            Producto producto = productoOptional.get();
+            if (producto.getStock() >= cantidad) {
+                productoService.decrementarStock(id, cantidad); // Asume que tienes este método en tu ProductoService
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.badRequest().body("No hay suficiente stock.");
+            }
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 }

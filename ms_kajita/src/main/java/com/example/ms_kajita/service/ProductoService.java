@@ -18,4 +18,8 @@ public interface ProductoService {
     public void eliminarPorId(Integer id);
 
     public Optional<Producto> obtenerProductoConNombreCategoria(Integer id);
+
+
+    //opcional
+    void decrementarStock(Integer productoId, Integer cantidad); // Nuevo método
 }

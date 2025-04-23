@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
-@FeignClient(name = "ms-producto-service", path = "/productos") // El nombre del servicio de productos (debe coincidir con el nombre registrado en Eureka o la configuración)
+@FeignClient(name = "ms-kajita-service", path = "/productos") // El nombre del servicio de productos (debe coincidir con el nombre registrado en Eureka o la configuración)
 public interface ProductoFeign {
 
     @GetMapping("/{id}") // La ruta del endpoint en el microservicio de productos para obtener un producto por su ID

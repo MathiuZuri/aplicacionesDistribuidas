@@ -7,6 +7,7 @@ import com.example.ms_kajita.repository.ProductoRepository;
 import com.example.ms_kajita.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -87,5 +88,24 @@ public class ProductoServiceImpl implements ProductoService {
             return "Categoría no encontrada";
         }
         return null;
+    }
+
+
+    //desde aqui es opcional
+    @Override
+    @Transactional // Asegura la atomicidad de la operación
+    public void decrementarStock(Integer productoId, Integer cantidad) {
+        Optional<Producto> productoOptional = productoRepository.findById(productoId);
+        if (productoOptional.isPresent()) {
+            Producto producto = productoOptional.get();
+            if (producto.getStock() >= cantidad) {
+                producto.setStock(producto.getStock() - cantidad);
+                productoRepository.save(producto);
+            } else {
+                throw new RuntimeException("No hay suficiente stock para decrementar del producto con ID: " + productoId);
+            }
+        } else {
+            throw new RuntimeException("No se encontró el producto con ID: " + productoId);
+        }
     }
 }
