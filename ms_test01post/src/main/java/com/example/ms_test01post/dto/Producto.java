@@ -1,16 +1,12 @@
-package com.example.ms_kajita.entity;
+package com.example.ms_test01post.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
-@Entity
+
 public class Producto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer id;
     private String nombre;
     private String descripcion;

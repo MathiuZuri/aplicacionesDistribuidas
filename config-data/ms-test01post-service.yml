@@ -1,0 +1,53 @@
+server:
+  port: 8083
+
+
+spring:
+  application:
+    name: ms-test01post-service
+
+    #datasource:
+    #  url: jdbc:h2:mem:ms_catalogo
+    #  driver-class-name: org.h2.Driver
+    #  username: sa
+    #  password: password
+
+    #jpa:
+    #database-platform: org.hibernate.dialect.H2Dialect
+  #h2:
+   # console:
+    #  enabled: false # Deshabilita la consola de H2
+     # path: /h2-console
+
+  h2:
+    console:
+      enabled: false # Deshabilita la consola de H2
+      path: /h2-console
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ms-prueba01post
+    username: root
+    password: ""
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /doc/swagger-ui.html
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8090/eureka
+  instance:
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90

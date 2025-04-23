@@ -1,0 +1,11 @@
+
+spring:
+  application:
+    name: ms-test01post
+  profiles:
+    active: development
+  config:
+    import: optional:configserver:http://root:123456@localhost:7070
+
+
+
