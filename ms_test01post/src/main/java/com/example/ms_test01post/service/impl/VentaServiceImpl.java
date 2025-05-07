@@ -33,7 +33,7 @@ public class VentaServiceImpl implements VentaService {
     @Autowired
     private ClienteServiceClient clienteServiceClient;
 
-    // Nombre del servicio C# en Eureka
+    // Nombre del servicio C# en Eureka (se utiliza ClienteServiceClient)
 
     @Override
     public List<Venta> listar() {
@@ -41,7 +41,7 @@ public class VentaServiceImpl implements VentaService {
                 .map(venta -> {
                     String nombreProducto = obtenerNombreProducto(venta.getProductoId());
                     venta.setNombreProducto(nombreProducto);
-                    obtenerYSetNombreCliente(venta); // Obtiene y establece el nombre del cliente
+                    obtenerYSetNombreCliente(venta); // Corregido: Pasa la entidad venta
                     return venta;
                 })
                 .collect(Collectors.toList());
@@ -60,7 +60,7 @@ public class VentaServiceImpl implements VentaService {
                 venta.setFechaVenta(LocalDateTime.now());
                 Venta ventaGuardada = ventaRepository.save(venta);
                 ventaGuardada.setNombreProducto(producto.getNombre());
-                obtenerYSetNombreCliente(ventaGuardada); // Obtiene y establece el nombre del cliente
+                obtenerYSetNombreCliente(ventaGuardada); // Corregido: Pasa la entidad ventaGuardada
                 return ventaGuardada;
             } else {
                 throw new RuntimeException("No hay suficiente stock para el producto con ID: " + venta.getProductoId());
@@ -77,7 +77,7 @@ public class VentaServiceImpl implements VentaService {
             ResponseEntity<Optional<Producto>> productoResponse = productoFeign.obtenerProducto(venta.getProductoId());
             if (productoResponse.getStatusCode().is2xxSuccessful() && productoResponse.getBody().isPresent()) {
                 venta.setNombreProducto(productoResponse.getBody().get().getNombre());
-                obtenerYSetNombreCliente(venta); // Obtiene y establece el nombre del cliente
+                obtenerYSetNombreCliente(venta); // Corregido: Pasa la entidad venta
                 return ventaRepository.save(venta);
             } else {
                 throw new RuntimeException("No se encontró el producto con ID: " + venta.getProductoId());
@@ -93,7 +93,7 @@ public class VentaServiceImpl implements VentaService {
             Venta venta = ventaOptional.get();
             String nombreProducto = obtenerNombreProducto(venta.getProductoId());
             venta.setNombreProducto(nombreProducto);
-            obtenerYSetNombreCliente(venta); // Obtiene y establece el nombre del cliente
+            obtenerYSetNombreCliente(venta); // Corregido: Pasa la entidad venta
             return Optional.of(venta);
         }
         return Optional.empty();
@@ -116,9 +116,9 @@ public class VentaServiceImpl implements VentaService {
         Integer clienteId = venta.getClienteId();
         if (clienteId != null) {
             // Usa el clienteServiceClient para obtener la información del cliente
-            Cliente cliente = clienteServiceClient.obtenerClienteInfo(clienteId);
-            if (cliente != null) {
-                venta.setNombreCliente(cliente.getNombreCompleto());
+            Cliente clienteInfo = clienteServiceClient.obtenerClienteInfo(clienteId);
+            if (clienteInfo != null) {
+                venta.setNombreCliente(clienteInfo.getNombreCompleto());
             } else {
                 venta.setNombreCliente("Cliente no encontrado");
             }
