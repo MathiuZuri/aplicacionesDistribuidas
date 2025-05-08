@@ -346,3 +346,6 @@ E:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\obj\Debug\net9.0\r
 E:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\obj\Debug\net9.0\ms-cliente.pdb
 E:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\obj\Debug\net9.0\ms-cliente.genruntimeconfig.cache
 E:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\obj\Debug\net9.0\ref\ms-cliente.dll
+H:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\obj\Debug\net9.0\ms-cliente.dll
+H:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\obj\Debug\net9.0\refint\ms-cliente.dll
+H:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\obj\Debug\net9.0\ms-cliente.pdb

@@ -63,7 +63,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "ms-cliente API V1");
-        c.RoutePrefix = builder.Configuration["Swagger:RoutePrefix"]; // Lee la ruta del prefijo de la configuración http://localhost:5201/swagger/index.html
+        c.RoutePrefix = builder.Configuration["Swagger:RoutePrefix"]; // Lee la ruta del prefijo de la configuración
+        // //http://localhost:5201/swagger/index.html
     });
 }
 

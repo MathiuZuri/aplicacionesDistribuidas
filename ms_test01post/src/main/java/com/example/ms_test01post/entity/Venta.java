@@ -78,8 +78,7 @@ public class Venta {
         this.fechaVenta = fechaVenta;
     }
 
-    public String getNombreProducto() {
-        return nombreProducto;
+    public String getNombreProducto() {return nombreProducto;
     }
 
     public void setNombreProducto(String nombreProducto) {

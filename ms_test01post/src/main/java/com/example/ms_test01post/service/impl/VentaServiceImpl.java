@@ -1,8 +1,8 @@
 package com.example.ms_test01post.service.impl;
 
-import com.example.ms_test01post.dto.Cliente; // Importa el DTO de Cliente
+import com.example.ms_test01post.dto.Cliente;
 import com.example.ms_test01post.dto.ClienteServiceClient;
-import com.example.ms_test01post.dto.Producto;
+import com.example.ms_test01post.dto.ProductoDto;
 import com.example.ms_test01post.feing.ProductoFeign;
 import com.example.ms_test01post.entity.Venta;
 import com.example.ms_test01post.repository.VentaRepository;
@@ -28,12 +28,10 @@ public class VentaServiceImpl implements VentaService {
     private ProductoFeign productoFeign;
 
     @Autowired
-    private RestTemplate restTemplate; // Inyecta RestTemplate
+    private RestTemplate restTemplate;
 
     @Autowired
     private ClienteServiceClient clienteServiceClient;
-
-    // Nombre del servicio C# en Eureka (se utiliza ClienteServiceClient)
 
     @Override
     public List<Venta> listar() {
@@ -41,7 +39,7 @@ public class VentaServiceImpl implements VentaService {
                 .map(venta -> {
                     String nombreProducto = obtenerNombreProducto(venta.getProductoId());
                     venta.setNombreProducto(nombreProducto);
-                    obtenerYSetNombreCliente(venta); // Corregido: Pasa la entidad venta
+                    obtenerYSetNombreCliente(venta);
                     return venta;
                 })
                 .collect(Collectors.toList());
@@ -50,17 +48,18 @@ public class VentaServiceImpl implements VentaService {
     @Override
     @Transactional
     public Venta guardar(Venta venta) {
-        ResponseEntity<Optional<Producto>> productoResponse = productoFeign.obtenerProducto(venta.getProductoId());
+        // Corregido: Pasa venta.getProductoId() (el Integer)
+        ResponseEntity<ProductoDto> productoResponse = productoFeign.obtenerProducto(venta.getProductoId());
 
-        if (productoResponse.getStatusCode().is2xxSuccessful() && productoResponse.getBody().isPresent()) {
-            Producto producto = productoResponse.getBody().get();
-            if (producto.getStock() >= venta.getCantidad()) {
+        if (productoResponse.getStatusCode().is2xxSuccessful() && productoResponse.getBody() != null) {
+            ProductoDto productoDto = productoResponse.getBody();
+            if (productoDto.getStock() >= venta.getCantidad()) {
                 productoFeign.decrementarStock(venta.getProductoId(), venta.getCantidad());
 
                 venta.setFechaVenta(LocalDateTime.now());
                 Venta ventaGuardada = ventaRepository.save(venta);
-                ventaGuardada.setNombreProducto(producto.getNombre());
-                obtenerYSetNombreCliente(ventaGuardada); // Corregido: Pasa la entidad ventaGuardada
+                ventaGuardada.setNombreProducto(productoDto.getNombre());
+                obtenerYSetNombreCliente(ventaGuardada);
                 return ventaGuardada;
             } else {
                 throw new RuntimeException("No hay suficiente stock para el producto con ID: " + venta.getProductoId());
@@ -74,10 +73,11 @@ public class VentaServiceImpl implements VentaService {
     public Venta actualizar(Venta venta) {
         Optional<Venta> ventaOptional = ventaRepository.findById(venta.getId());
         if (ventaOptional.isPresent()) {
-            ResponseEntity<Optional<Producto>> productoResponse = productoFeign.obtenerProducto(venta.getProductoId());
-            if (productoResponse.getStatusCode().is2xxSuccessful() && productoResponse.getBody().isPresent()) {
-                venta.setNombreProducto(productoResponse.getBody().get().getNombre());
-                obtenerYSetNombreCliente(venta); // Corregido: Pasa la entidad venta
+            // Corregido: Pasa venta.getProductoId() (el Integer)
+            ResponseEntity<ProductoDto> productoResponse = productoFeign.obtenerProducto(venta.getProductoId());
+            if (productoResponse.getStatusCode().is2xxSuccessful() && productoResponse.getBody() != null) {
+                venta.setNombreProducto(productoResponse.getBody().getNombre());
+                obtenerYSetNombreCliente(venta);
                 return ventaRepository.save(venta);
             } else {
                 throw new RuntimeException("No se encontró el producto con ID: " + venta.getProductoId());
@@ -93,7 +93,7 @@ public class VentaServiceImpl implements VentaService {
             Venta venta = ventaOptional.get();
             String nombreProducto = obtenerNombreProducto(venta.getProductoId());
             venta.setNombreProducto(nombreProducto);
-            obtenerYSetNombreCliente(venta); // Corregido: Pasa la entidad venta
+            obtenerYSetNombreCliente(venta);
             return Optional.of(venta);
         }
         return Optional.empty();
@@ -105,9 +105,10 @@ public class VentaServiceImpl implements VentaService {
     }
 
     private String obtenerNombreProducto(Integer productoId) {
-        ResponseEntity<Optional<Producto>> productoResponse = productoFeign.obtenerProducto(productoId);
-        if (productoResponse.getStatusCode().is2xxSuccessful() && productoResponse.getBody().isPresent()) {
-            return productoResponse.getBody().get().getNombre();
+        // Corregido: Pasa productoId (el Integer)
+        ResponseEntity<ProductoDto> productoResponse = productoFeign.obtenerProducto(productoId);
+        if (productoResponse.getStatusCode().is2xxSuccessful() && productoResponse.getBody() != null) {
+            return productoResponse.getBody().getNombre();
         }
         return "Producto no encontrado";
     }
@@ -115,7 +116,6 @@ public class VentaServiceImpl implements VentaService {
     private void obtenerYSetNombreCliente(Venta venta) {
         Integer clienteId = venta.getClienteId();
         if (clienteId != null) {
-            // Usa el clienteServiceClient para obtener la información del cliente
             Cliente clienteInfo = clienteServiceClient.obtenerClienteInfo(clienteId);
             if (clienteInfo != null) {
                 venta.setNombreCliente(clienteInfo.getNombreCompleto());

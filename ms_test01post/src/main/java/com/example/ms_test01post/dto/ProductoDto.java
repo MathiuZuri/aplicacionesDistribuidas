@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 
-public class Producto {
+public class ProductoDto {
 
     private Integer id;
     private String nombre;
@@ -74,7 +74,7 @@ public class Producto {
         this.stock = stock;
     }
 
-    public Producto(Integer id, String nombre, String descripcion, LocalDateTime fechaCreacion, Integer categoriaId, String categoriaNombre, Integer stock) {
+    public ProductoDto(Integer id, String nombre, String descripcion, LocalDateTime fechaCreacion, Integer categoriaId, String categoriaNombre, Integer stock) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -84,7 +84,7 @@ public class Producto {
         this.stock = stock;
     }
 
-    public Producto() {}
+    public ProductoDto() {}
 
     @Override
     public String toString() {
