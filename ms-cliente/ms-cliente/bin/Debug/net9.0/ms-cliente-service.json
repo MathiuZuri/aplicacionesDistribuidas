@@ -24,11 +24,16 @@
       "ShouldFetchRegistry": true               
     },
     "Instance": {
-      "AppName": "ms-cliente-service",        
-      "InstanceId": "ms-cliente-service-instance-5201",
-      "Port": 5201,               
+      "AppName": "MS-CLIENTE-SERVICE",
+      "InstanceId": "${spring:application:name}:${spring:application:instance_id:${random.value}}",
       "PreferIpAddress": false,
       "Hostname": "ms-cliente-service"
     }
-  }
+  },
+  "spring": {
+    "application": {
+      "name": "ms-cliente-service"
+    }
+    
+}
 }

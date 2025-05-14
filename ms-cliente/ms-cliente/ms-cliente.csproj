@@ -18,6 +18,8 @@
         <PackageReference Include="MySql.EntityFrameworkCore" Version="9.0.3" />
         <PackageReference Include="Steeltoe.Discovery.ClientCore" Version="3.2.8" />
         <PackageReference Include="Steeltoe.Discovery.Eureka" Version="3.2.8" />
+        <PackageReference Include="Steeltoe.Extensions.Configuration.CloudFoundryBase" Version="3.2.8" />
+        <PackageReference Include="Steeltoe.Extensions.Configuration.ConfigServerBase" Version="3.2.8" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
     </ItemGroup>
 
