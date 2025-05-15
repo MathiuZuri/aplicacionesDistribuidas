@@ -1,25 +1,26 @@
 server:
-
   port: ${PORT:${SERVERS_PORT:0}}
 
 spring:
   jpa:
-    hibernate.ddl-auto: update
+    hibernate.ddl-auto: create-drop # O 'update' si quieres mantener los datos entre reinicios
     generate-ddl: true
     show-sql: true
   datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/eja_auth
-    username: root
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:eja_auth;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE # Base de datos en memoria 'eja_auth'
+    username: sa
     password:
+  h2:
+    console:
+      enabled: true # Habilita la consola de H2 en /h2-console
+      path: /h2-console
 
 eureka:
   client:
     serviceUrl:
-      #defaultZone: http://localhost:8090/eureka
       defaultZone: ${EUREKA_URI:http://localhost:8090/eureka}
   instance:
-    #hostname: localhost
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
 jwt:
