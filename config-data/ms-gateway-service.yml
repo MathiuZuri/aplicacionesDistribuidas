@@ -37,6 +37,8 @@ spring:
           uri: lb://ms-test01post-service
           predicates:
             - Path=/ventas/**
+          filters:
+            - AuthFilter
 
         - id: eja-auth-service
           uri: lb://eja-auth-service
