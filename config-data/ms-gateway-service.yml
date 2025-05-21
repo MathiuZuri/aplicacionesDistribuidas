@@ -40,8 +40,8 @@ spring:
           filters:
             - AuthFilter
 
-        - id: eja-auth-service
-          uri: lb://eja-auth-service
+        - id: ms-auth-service
+          uri: lb://ms-auth-service
           predicates:
             - Path=/auth/**
 

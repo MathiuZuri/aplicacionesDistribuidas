@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "E:\\aplicaiones distribuidas\\DAD-2025-G2\\ms-cliente\\ms-cliente\\ms-cliente.csproj": {}
+    "J:\\aplicaiones distribuidas\\DAD-2025-G2\\ms-cliente\\ms-cliente\\ms-cliente.csproj": {}
   },
   "projects": {
-    "E:\\aplicaiones distribuidas\\DAD-2025-G2\\ms-cliente\\ms-cliente\\ms-cliente.csproj": {
+    "J:\\aplicaiones distribuidas\\DAD-2025-G2\\ms-cliente\\ms-cliente\\ms-cliente.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\aplicaiones distribuidas\\DAD-2025-G2\\ms-cliente\\ms-cliente\\ms-cliente.csproj",
+        "projectUniqueName": "J:\\aplicaiones distribuidas\\DAD-2025-G2\\ms-cliente\\ms-cliente\\ms-cliente.csproj",
         "projectName": "ms-cliente",
-        "projectPath": "E:\\aplicaiones distribuidas\\DAD-2025-G2\\ms-cliente\\ms-cliente\\ms-cliente.csproj",
-        "packagesPath": "C:\\Users\\Datos\\.nuget\\packages\\",
-        "outputPath": "E:\\aplicaiones distribuidas\\DAD-2025-G2\\ms-cliente\\ms-cliente\\obj\\",
+        "projectPath": "J:\\aplicaiones distribuidas\\DAD-2025-G2\\ms-cliente\\ms-cliente\\ms-cliente.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "J:\\aplicaiones distribuidas\\DAD-2025-G2\\ms-cliente\\ms-cliente\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Datos\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
