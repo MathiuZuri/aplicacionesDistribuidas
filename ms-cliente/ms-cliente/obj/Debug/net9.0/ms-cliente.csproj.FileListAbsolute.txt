@@ -526,3 +526,6 @@ J:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\bin\Debug\net9.0\S
 H:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\bin\Debug\net9.0\Steeltoe.Extensions.Configuration.CloudFoundryBase.dll
 H:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\bin\Debug\net9.0\Steeltoe.Extensions.Configuration.ConfigServerBase.dll
 H:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\bin\Debug\net9.0\Steeltoe.Extensions.Configuration.PlaceholderBase.dll
+E:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\bin\Debug\net9.0\Steeltoe.Extensions.Configuration.CloudFoundryBase.dll
+E:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\bin\Debug\net9.0\Steeltoe.Extensions.Configuration.ConfigServerBase.dll
+E:\aplicaiones distribuidas\DAD-2025-G2\ms-cliente\ms-cliente\bin\Debug\net9.0\Steeltoe.Extensions.Configuration.PlaceholderBase.dll

@@ -8,7 +8,7 @@
         <version>2.5.4</version>
         <relativePath/>
     </parent>
-    <groupId>com.eja</groupId>
+    <groupId>com.example</groupId>
     <artifactId>eja-auth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>eja-auth</name> <!--auth-service -->

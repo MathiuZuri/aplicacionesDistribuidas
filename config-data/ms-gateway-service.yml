@@ -22,16 +22,26 @@ spring:
           uri: lb://ms-catalogo-service
           predicates:
             - Path=/categorias/**
+          filters:
+            - AuthFilter
+
 
         - id: ms-kajita-service
           uri: lb://ms-kajita-service
           predicates:
             - Path=/productos/**
+          filters:
+            - AuthFilter
 
         - id: ms-test01post-service
           uri: lb://ms-test01post-service
           predicates:
             - Path=/ventas/**
+
+        - id: eja-auth-service
+          uri: lb://eja-auth-service
+          predicates:
+            - Path=/auth/**
 
         - id: ms-cliente-service-route
           uri: lb://ms-cliente-service
