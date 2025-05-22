@@ -24,8 +24,8 @@
       "ShouldFetchRegistry": true               
     },
     "Instance": {
-      "AppName": "MS-CLIENTE-SERVICE",
-      "InstanceId": "${spring:application:name}:${spring:application:instance_id:${random.value}}",
+      "AppName": "ms-cliente-service",
+      "InstanceId": "ms-cliente-service-instancia-1",
       "PreferIpAddress": false,
       "Hostname": "ms-cliente-service"
     }
