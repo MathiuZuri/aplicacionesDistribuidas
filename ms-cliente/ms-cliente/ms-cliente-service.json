@@ -25,7 +25,7 @@
     },
     "Instance": {
       "AppName": "ms-cliente-service",
-      "InstanceId": "ms-cliente-service-instancia-1",
+      "InstanceId": "ms-cliente-service",
       "PreferIpAddress": false,
       "Hostname": "ms-cliente-service"
     }
